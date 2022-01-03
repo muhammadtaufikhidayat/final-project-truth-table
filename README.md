@@ -1,6 +1,11 @@
 # final-project-truth-table
 Final Project Algoritma dan Pemrograman Semester 1
 
+Fitur Program : 
+- Truth Table
+- Penghitung Pajak Kendaraan
+- Penghitung Gaji Karyawan
+
 NAMA KELOMPOK :
 1. LUCKY HANINDRIYO : 21.11.4313
 2. AMEILIA NURCAHYANDARI SUTOMO : 21.11.4314
