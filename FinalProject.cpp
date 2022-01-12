@@ -7,6 +7,8 @@ void truthTabel();
 void menuProgram();
 void hitungGaji();
 void hitungPajak();
+void pajakMotor();
+void pajakMobil();
 void pilihWarna();
 int main(){
     menuProgram();
@@ -55,7 +57,7 @@ void pilihMenu(){
 
 // Fungsi Cek Variable apakah ada yang sama atau tidak
 void cekVariable(int inp, char nama[]){
-    for (int  i = 0; i < inp; i++){
+    for (int  i = 0; i <= inp; i++){
         for (int j = i+1; j <= inp; j++){
             // Cek Kondisi Input Nilai Variable tidak boleh ada yg sama
             if (nama[i] == nama[j]){
@@ -69,9 +71,7 @@ void cekVariable(int inp, char nama[]){
                 cin.get();
                 truthTabel();
             }
-            break;
         }
-        break;
     }
 }
 
@@ -194,7 +194,7 @@ void hitungPajak(){
     const float tambah = 0.005 ;
     string pilihDenda,pilih;
 
-        menu:
+        // menu:
         system("cls");
         cout << "___________________________\n";
         cout << "PENGHITUNG PAJAK KENDARAAN\n";
@@ -208,7 +208,30 @@ void hitungPajak(){
         cin >> pilih;
     system("cls");
     if (pilih == "1"){
-        motor:
+        pajakMotor();
+    }else if( pilih == "2"){
+            pajakMobil();
+    }else if(pilih == "3"){
+        cin.ignore();
+        menuProgram();
+    }else if(pilih == "4"){
+        cin.ignore();
+        endProgram();
+    }else if (pilih != "4" && pilih != "3" && pilih != "2" && pilih != "1") {
+        cin.ignore();
+        cout << "Mohon Maaf Input yang anda masukkan salah, klik enter untuk kemabli ke menu";
+        cin.get();
+        system("cls");
+        hitungPajak();
+    }
+}
+// Pajak Motor
+void pajakMotor(){
+    float nilaiJualMotor,presentasePajak = 0,kepemilikan = 0.02,sumbanganWajibDanaMotor = 32000 ;
+    int bobot,tanganKe,hasilDenda,hasil;
+    const float tambah = 0.005 ;
+    string pilihDenda;
+
         system("cls");
         cout << "------------------------------------------------------------------------------\n";
         cout << "\t\t\tRINCIAN PEMBAYARAN PAJAK\n";
@@ -231,7 +254,6 @@ void hitungPajak(){
                     kepemilikan += tambah ;
                 }
             }
-
             presentasePajak = kepemilikan;
             hasil = (nilaiJualMotor * bobot) * presentasePajak ;
         
@@ -246,22 +268,27 @@ void hitungPajak(){
             cin.ignore();
             cout << "\nSilahkan Klik enter untuk kembali ke menu";
             cin.get();
-            goto menu;
+            hitungPajak();
         } else if (pilihDenda == "tidak" || pilihDenda == "Tidak"){
             cout << "Total Pajak Motor\t\t = Rp. " << hasil << "\n"; ;
             cout << "------------------------------------------------------------------------------\n";
             cin.ignore();
             cout << "\nSilahkan Klik enter untuk kembali ke menu";
             cin.get();
-            goto menu;
+            hitungPajak();
         }else {
             cin.ignore();
             cout << "Mohon Maaf Input yang anda masukkan tidak valid! Klik enter untuk reset";
             cin.get();
-            goto motor;
+            pajakMotor();
         }
-    }else if( pilih == "2"){
-            mobil:
+}
+// Pajak Mobil
+void pajakMobil(){
+    float nilaiJualMobil,presentasePajak = 0,kepemilikan = 0.02, sumbanganWajibDanaMobil = 100000;
+    int bobot,tanganKe,hasilDenda,hasil;
+    const float tambah = 0.005 ;
+    string pilihDenda;
 
             system("cls");
             cout << "------------------------------------------------------------------------------\n";
@@ -295,13 +322,13 @@ void hitungPajak(){
                 cout << "Keterlambatan berapa bulan\t = ";
                 cin >> bulan;
                 cout << "------------------------------------------------------------------------------\n";
-                hasilDenda = (hasil * 25/100 * bulan / 12) + sumbanganWajibDanaMotor;
+                hasilDenda = (hasil * 25/100 * bulan / 12) + sumbanganWajibDanaMobil;
                 cout << "Total Pajak Mobil\t\t = Rp. " << hasilDenda + hasil << "\n";
                 cout << "------------------------------------------------------------------------------\n";
                 cin.ignore();
                 cout << "\nSilahkan Klik enter untuk kembali ke menu";
                 cin.get();
-                goto menu;
+                hitungPajak();
 
             } else if (pilihDenda == "tidak" || pilihDenda == "Tidak"){
                 cout << "Total Pajak Mobil\t\t = Rp. " << hasil << "\n";
@@ -309,26 +336,13 @@ void hitungPajak(){
                 cin.ignore();
                 cout << "\nSilahkan Klik enter untuk kembali ke menu";
                 cin.get();
-                goto menu;
+                hitungPajak();
             }else{
                 cin.ignore();
                 cout << "Mohon Maaf Input yang anda masukkan tidak valid! Klik enter untuk reset";
                 cin.get();
-                goto mobil;
+                pajakMobil();
             }
-    }else if(pilih == "3"){
-        cin.ignore();
-        menuProgram();
-    }else if(pilih == "4"){
-        cin.ignore();
-        endProgram();
-    }else if (pilih != "4" && pilih != "3" && pilih != "2" && pilih != "1") {
-        cin.ignore();
-        cout << "Mohon Maaf Input yang anda masukkan salah, klik enter untuk kemabli ke menu";
-        cin.get();
-        system("cls");
-        goto menu;
-    }
 }
 // Fungsi Hitung Gaji
 void hitungGaji(){
